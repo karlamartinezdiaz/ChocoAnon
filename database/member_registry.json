@@ -1,1 +1,29 @@
-[{"name": "Member1", "Id": 111333111, "address": "113 1'th Way", "city": "Onesville", "state": "OR", "zipcode": 11111, "status": "Valid"}]
+[
+  {
+    "name": "Member1",
+    "Id": 111333111,
+    "address": "113 1'th Way",
+    "city": "Onesville",
+    "state": "OR",
+    "zipcode": 11111,
+    "status": "Valid"
+  },
+  {
+    "name": "Member2",
+    "Id": 22244422,
+    "address": "224 22nd St",
+    "city": "Two Town",
+    "state": "OR",
+    "zipcode": 22222,
+    "status": "Valid"
+  },
+  {
+    "name": "Member3",
+    "Id": 396352333,
+    "address": "3blvd",
+    "city": "Threeeeee",
+    "state": "OR",
+    "zipcode": 33333,
+    "status": "Suspended"
+  }
+]

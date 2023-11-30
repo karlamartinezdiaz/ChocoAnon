@@ -1,7 +1,11 @@
+
+import __init__
 import manager_controller as mc
 import data
 
 '''Displays the user options'''
+
+
 def main_menu():
     print("1. End of Week")
     print("2. Generate ETF Report")
@@ -17,6 +21,8 @@ def main_menu():
 
 
 '''Calls the following three functions.'''
+
+
 def endOfWeek():
     etfReport()
     memberReport()
@@ -24,52 +30,58 @@ def endOfWeek():
 
 
 '''Placeholder for manager.py function'''
+
+
 def etfReport():
     pass
 
 
 '''Takes in a member id. Calls manager.py function'''
+
+
 def memberReport():
     print(mc.ManagerControl().viewMemberReport(data.BasicData().getId()))
-    #Something should be returned here. At the very least a T/F.
+    # Something should be returned here. At the very least a T/F.
 
 
 '''Takes in a provider id. Calls manager.py function'''
+
+
 def providerReport():
     print(mc.ManagerControl().viewProviderReport(data.BasicData().getId()))
-    #Something should be returned here. At the very least a T/F.
+    # Something should be returned here. At the very least a T/F.
 
 
 def addMember():
     print(mc.ManagerControl().addMember(data.BasicData().createBasicData()))
-    #Something should be returned here. At the very least a T/F.
+    # Something should be returned here. At the very least a T/F.
 
 
 def updateMember():
     member = data.BasicData().createBasicData()
     print(mc.ManagerControl().editMember(member.Id, member))
-    #Something should be returned here. At the very least a T/F.
+    # Something should be returned here. At the very least a T/F.
 
 
 def removeMember():
     print(mc.ManagerControl().removeMember(data.BasicData().getId()))
-    #Something should be returned here. At the very least a T/F.
+    # Something should be returned here. At the very least a T/F.
 
 
 def addProvider():
     print(mc.ManagerControl().addProvider(data.BasicData().createBasicData()))
-    #Something should be returned here. At the very least a T/F.
+    # Something should be returned here. At the very least a T/F.
 
 
 def updateProvider():
     provider = data.BasicData().createBasicData()
     print(mc.ManagerControl().editProvider(provider.Id, provider))
-    #Something should be returned here. At the very least a T/F.
+    # Something should be returned here. At the very least a T/F.
 
 
 def removeProvider():
     print(mc.ManagerControl().removeProvider(data.BasicData().getId()))
-    #Something should be returned here. At the very least a T/F.
+    # Something should be returned here. At the very least a T/F.
 
 
 if __name__ == '__main__':
@@ -104,9 +116,8 @@ if __name__ == '__main__':
             else:
                 print("Invalid Choice.")
 
-        #Intended to catch letters/characters.
+        # Intended to catch letters/characters.
         except ValueError:
             print("Invalid Choice.")
 
     print("Shutting off terminal.")
-
