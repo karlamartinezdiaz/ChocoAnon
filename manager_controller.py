@@ -1,5 +1,3 @@
-import __init__
-import models.database as db
 from data import *
 from datetime import datetime
 from database import *
@@ -55,5 +53,4 @@ class ManagerControl:
 obj = {"name": "billy", "Id": 22244422, "address": "224 22nd St",
        "city": "Two Town", "state": "OR", "zipcode": 22222, "status": "Valid"}
 
-manager = ManagerControl()
-manager.removeMember(22244422)
+
