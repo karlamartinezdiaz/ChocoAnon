@@ -88,14 +88,14 @@ class ServiceData:
 
     def getDateAndTime(self):
         dateNTime = datetime.now()
-        return dateNTime.strftime(dateNTime, '%m-%d-%Y %H:%M:S')
+        return datetime.strftime(dateNTime, '%m-%d-%Y %H:%M:S')
 
     def getProviderNumber(self):
         while True:
             providerNumber = (input("Enter the provider number: "))
             if not providerNumber.isdigit():
                 print("The provider Number should only contain numbers")
-            elif len(providerNumber != 9):
+            elif len(providerNumber) != 9:
                 print("The provider number must have exaclty 9 numbers")
             else:
                 return int(providerNumber)
@@ -105,7 +105,7 @@ class ServiceData:
             memberNumber = (input("Enter the member number: "))
             if not memberNumber.isdigit():
                 print("The member Number should only contain numbers")
-            elif len(memberNumber != 9):
+            elif len(memberNumber) != 9:
                 print("The member number must have exaclty 9 numbers")
             else:
                 return int(memberNumber)
@@ -115,7 +115,7 @@ class ServiceData:
             serviceCode = (input("Enter the service code: "))
             if not serviceCode.isdigit():
                 print("The service code should only contain numbers")
-            elif len(serviceCode != 6):
+            elif len(serviceCode) != 6:
                 print("The service code must have exaclty 9 numbers")
             else:
                 return int(serviceCode)

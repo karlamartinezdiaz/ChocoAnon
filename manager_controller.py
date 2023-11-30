@@ -19,8 +19,8 @@ class ManagerControl:
 
     # this obj will have things like name, number etc..
     def addMember(self, memberObj):
-        # call the data base class funtion to do the ading
-        return database.add(memberObj)
+        memberDict = self.makeDict(memberObj)
+        addMember(memberDict)
 
     def editMember(self, memberId, memberObj):
         memDict = getJSONListOfDicts(memRegPath)
@@ -48,6 +48,3 @@ class ManagerControl:
 
     def viewProviderReport(providerFile):
         return database.providerReport(providerId)
-
-
-
