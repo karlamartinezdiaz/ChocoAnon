@@ -27,7 +27,7 @@ class ManagerControl:
         for mem in memDict:
             if (mem['Id'] == memberId):
                 mem.update(memberObj)
-        createJSONListFile(provRegPath, memDict)
+        createJSONListFile(memRegPath, memDict)
 
     def editProvider(self, providerId, providerObj):
         print(provRegPath)
@@ -48,3 +48,10 @@ class ManagerControl:
 
     def viewProviderReport(providerFile):
         return database.providerReport(providerId)
+
+
+obj = {"name": "billy", "Id": 22244422, "address": "224 22nd St",
+       "city": "Two Town", "state": "OR", "zipcode": 22222, "status": "Valid"}
+
+manager = ManagerControl()
+manager.removeMember(22244422)
