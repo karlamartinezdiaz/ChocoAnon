@@ -98,7 +98,7 @@ if __name__ == '__main__':
             elif choice == 9:
                 updateProvider()
             elif choice == 10:
-                removeMember()
+                removeProvider()
             elif choice == 11:
                 pass
             else:
