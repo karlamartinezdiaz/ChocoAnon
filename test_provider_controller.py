@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch, mock_open
 from provider_controller import ProviderControl
 from database import checkProviderID, checkMemberID
 
@@ -6,71 +7,71 @@ from database import checkProviderID, checkMemberID
 class TestProviderControl(unittest.TestCase):
     def setUp(self):
         # Initialize a ProviderControl instance for testing
-        self.provider_control = ProviderControl()
+        self.providerControl = ProviderControl()
 
-    # authenticataion tests-----------------------------------------------
+    # Authentication tests-----------------------------------------------
     def test_giveAuthorization_valid(self):
         # Test giveAuthorization with a valid provider ID
-        provider_id = "111333111"
-        result = self.provider_control.giveAuthorization(provider_id)
-        db_result = checkProviderID(provider_id)
+        providerId = "111333112"
+        result = self.providerControl.giveAuthorization(providerId)
+        dbResult = checkProviderID(providerId)
         self.assertTrue(result)
-        self.assertTrue(db_result)
+        self.assertTrue(dbResult)
 
     def test_giveAuthorization_invalid(self):
         # Test giveAuthorization with an invalid provider ID
-        invalid_provider_id = "222222221"  # this doesnt exist in the database
-        result = self.provider_control.giveAuthorization(invalid_provider_id)
-        db_result = checkProviderID(invalid_provider_id)
+        invalidProviderId = "222222221"  # This doesn't exist in the database
+        result = self.providerControl.giveAuthorization(invalidProviderId)
+        dbResult = checkProviderID(invalidProviderId)
         self.assertFalse(result)
-        self.assertFalse(db_result)
+        self.assertFalse(dbResult)
 
     # Member ID validation tests-----------------------------------------------
     def test_messageMemberId_valid(self):
         # Test messageMemberId with a valid member ID
-        member_id = "987654321"
-        result = self.provider_control.messageMemberId(member_id)
-        db_result = checkMemberID(member_id)
+        memberId = "987654321"
+        result = self.providerControl.messageMemberId(memberId)
+        dbResult = checkMemberID(memberId)
         self.assertEqual(result, "Valid")
-        self.assertEqual(db_result, "Valid")
+        self.assertEqual(dbResult, "Valid")
 
     def test_messageMemberId_invalid(self):
         # Test messageMemberId with an invalid member ID
-        invalid_member_id = "987654322"  # this doesnt exist in the database
-        result = self.provider_control.messageMemberId(invalid_member_id)
-        db_result = checkMemberID(invalid_member_id)
+        invalidMemberId = "987654322"  # This doesn't exist in the database
+        result = self.providerControl.messageMemberId(invalidMemberId)
+        dbResult = checkMemberID(invalidMemberId)
         self.assertEqual(result, "Invalid")
-        self.assertEqual(db_result, "Invalid")
+        self.assertEqual(dbResult, "Invalid")
 
     def test_messageMemberId_valid(self):
         # Test messageMemberId with a valid member ID
-        valid_member_id = "111333111"  # valid member ID from  database
-        result = self.provider_control.messageMemberId(valid_member_id)
+        validMemberId = "111333111"  # Valid member ID from the database
+        result = self.providerControl.messageMemberId(validMemberId)
         self.assertEqual(result, "Valid")
 
     def test_messageMemberId_invalid(self):
-        # Test messageMemberId with an Invalid member ID
-        # Use an invalid member ID that doesn't exist in  database
-        invalid_member_id = "987654322"
-        result = self.provider_control.messageMemberId(invalid_member_id)
+        # Test messageMemberId with an invalid member ID
+        # Use an invalid member ID that doesn't exist in the database
+        invalidMemberId = "987654322"
+        result = self.providerControl.messageMemberId(invalidMemberId)
         self.assertEqual(result, "Invalid")
 
     def test_messageMemberId_suspended(self):
-        # test messageMemberId with a suspended Member ID (customize this based on data)
-        suspended_member_id = "396352333"  # suspended member ID from  database
-        result = self.provider_control.messageMemberId(suspended_member_id)
+        # Test messageMemberId with a suspended Member ID (customize this based on data)
+        suspendedMemberId = "396352333"  # Suspended member ID from the database
+        result = self.providerControl.messageMemberId(suspendedMemberId)
         self.assertEqual(result, "Suspended")
 
-        # Logout tests-----------------------------------------------
+    # Logout tests-----------------------------------------------
     def test_logout(self):
-        # Test logou functionality
-        result = self.provider_control.logout()
+        # Test logout functionality
+        result = self.providerControl.logout()
         self.assertEqual(result, -1)  # Assuming -1 is logged-out state
 
     # Provider Directory tests-----------------------------------------------
     def test_getProviderDirectory(self):
         # Test retrieval of provider directory
-        directory = self.provider_control.getProviderDirectory()
+        directory = self.providerControl.getProviderDirectory()
         # Assuming it should return a list
         self.assertIsInstance(directory, list)
         # Assuming the directory is not empty
@@ -79,25 +80,25 @@ class TestProviderControl(unittest.TestCase):
     # Service Fee Verification tests-----------------------------------------------
     def test_verifyServiceFee_valid(self):
         # Test verifyServiceFee with valid inputs
-        valid_service_fee = 150  # valid service fee from database
-        valid_service_code = 123456  # valid service code from database
-        result = self.provider_control.verifyServiceFee(
-            valid_service_fee, valid_service_code)
+        validServiceFee = 150  # Valid service fee from the database
+        validServiceCode = 123456  # Valid service code from the database
+        result = self.providerControl.verifyServiceFee(
+            validServiceFee, validServiceCode)
         self.assertTrue(result)
 
     def test_verifyServiceFee_invalid(self):
         # Test verifyServiceFee with invalid inputs
-        invalid_service_fee = 20  # invalid service fee that doesn't match any service code
-        invalid_service_code = 190  # invalid service code that doesn't exist
-        result = self.provider_control.verifyServiceFee(
-            invalid_service_fee, invalid_service_code)
+        invalidServiceFee = 20  # Invalid service fee that doesn't match any service code
+        invalidServiceCode = 190  # Invalid service code that doesn't exist
+        result = self.providerControl.verifyServiceFee(
+            invalidServiceFee, invalidServiceCode)
         self.assertFalse(result)
 
     # Get Service Fee tests-----------------------------------------------
     def test_getServiceFee_valid(self):
         # Test getServiceFee with a valid service code
-        valid_service_code = 123456  # alid service code from Database
-        fee = self.provider_control.getServiceFee(valid_service_code)
+        validServiceCode = 123456  # Valid service code from the database
+        fee = self.providerControl.getServiceFee(validServiceCode)
         # Assuming there is a fee for this service code
         self.assertIsNotNone(fee)
         # Assuming 150 is the correct fee for this service
@@ -105,23 +106,47 @@ class TestProviderControl(unittest.TestCase):
 
     def test_getServiceFee_invalid(self):
         # Test getServiceFee with an invalid service code
-        invalid_service_code = 654321  # Use an invalid service code that doesn't exist
-        fee = self.provider_control.getServiceFee(invalid_service_code)
+        invalidServiceCode = 654321  # Use an invalid service code that doesn't exist
+        fee = self.providerControl.getServiceFee(invalidServiceCode)
         # Assuming there is no fee for this service code
         self.assertIsNone(fee)
 
     # Verify Service Code tests-----------------------------------------------
     def test_verifyServiceCode_valid(self):
         # Test verifyServiceCode with a valid service code
-        valid_service_code = 123456  # Valid service code from database
-        result = self.provider_control.verifyServiceCode(valid_service_code)
+        validServiceCode = 123456  # Valid service code from the database
+        result = self.providerControl.verifyServiceCode(validServiceCode)
         self.assertTrue(result)
 
     def test_verifyServiceCode_invalid(self):
         # Test verifyServiceCode with an invalid service code
-        invalid_service_code = 654321  # invalid service code that doesn't exist
-        result = self.provider_control.verifyServiceCode(invalid_service_code)
+        invalidServiceCode = 654321  # Invalid service code that doesn't exist
+        result = self.providerControl.verifyServiceCode(invalidServiceCode)
         self.assertFalse(result)
+
+    def test_createServiceRecord_valid(self):
+        # Test creating a service record with valid inputs
+        providerId = "111333112"
+        memberId = "111333111"
+        serviceCode = 123456  # Valid service code from the database
+        dateOfService = "01-15-2023"
+        comments = "Test service record"
+
+        serviceRecord = self.providerControl.createServiceRecord(
+            providerId, memberId, serviceCode, dateOfService, comments)
+
+        # Ensure that the service record is not None
+        self.assertIsNotNone(serviceRecord)
+
+        self.providerControl.appendServiceRecord(serviceRecord)
+
+        # Check specific attributes of the service record if needed
+        # Use "providerId" key as returned by createServiceRecord
+        self.assertEqual(serviceRecord["providerId"], providerId)
+        self.assertEqual(serviceRecord["memberId"], memberId)
+        self.assertEqual(serviceRecord["serviceCode"], serviceCode)
+        self.assertEqual(serviceRecord["date"], dateOfService)
+        self.assertEqual(serviceRecord["comments"], comments)
 
 
 if __name__ == '__main__':
