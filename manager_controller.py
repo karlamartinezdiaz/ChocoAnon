@@ -66,17 +66,24 @@ class ManagerControl:
         except Exception as e:
             return e
 
-    def getServiceName(self, serviceCode):
+    def getServiceInfo(self, serviceCode, info):
         providerDirectory = db.getJSONListOfDicts(db.provDirPath)
         for dic in providerDirectory:
             if dic['code'] == serviceCode:
-                return dic['name']
+                return dic[info]
         return None
 
     def getProviderName(self, providerId):
         providerReg = db.getJSONListOfDicts(db.provRegPath)
         for dic in providerReg:
             if dic['Id'] == providerId:
+                return dic['name']
+        return None
+
+    def getMemberName(self, memberId):
+        memberReg = db.getJSONListOfDicts(db.memRegPath)
+        for dic in memberReg:
+            if dic['Id'] == memberId:
                 return dic['name']
         return None
 
@@ -90,6 +97,12 @@ class ManagerControl:
                 return None
         return files[-1]
 
+    def getTotalFee(self, serviceList):
+        fee = 0
+        for service in serviceList:
+            fee += service['fee']
+        return fee
+
     def getMemberService(self, servicePath,  memberId):
         serviceRecord = db.getJSONListOfDicts(servicePath)
         serviceList = []
@@ -100,26 +113,53 @@ class ManagerControl:
             if dic['memberId'] == memberId:
                 dateOfService = dic['dateOfService']
                 providerName = self.getProviderName(dic['providerId'])
-                serviceName = self.getServiceName(dic['serviceCode'])
+                serviceName = self.getServiceInfo(dic['serviceCode'], "name")
                 serviceList.append(
                     {"date": dateOfService, "providerName": providerName, "serviceName": serviceName})
+        return serviceList
+
+    def getProviderService(self, servicePath, providerId):
+        serviceRecord = db.getJSONListOfDicts(servicePath)
+        serviceList = []
+        for dic in serviceRecord:
+            if dic['providerId'] == providerId:
+                memberName = self.getMemberName(dic['memberId'])
+                fee = self.getServiceInfo(dic['serviceCode'], 'fee')
+                dic['memberName'] = memberName
+                dic['fee'] = fee
+                dic.pop('comments')
+                dic.pop('providerId')
+                serviceList.append(dic)
         return serviceList
 
     def createMemberReport(self):
         servicePath = self.getRecentWeek()
         weekName = servicePath[25:]
         memRegList = db.getJSONListOfDicts(db.memRegPath)
+        provRegList = db.getJSONListOfDicts(db.provRegPath)
         memberDirectoryPath = ''
         providersDirectoryPath = ''
+        etfDirectoryPath = ''
         for memdic in memRegList:
             serviceList = self.getMemberService(servicePath, memdic['Id'])
-            memdic['services'] = serviceList
-            memberDirectoryPath, providersDirectoryPath = self.createWeekDirectories()
-            self.addMemDict(memdic, weekName, memberDirectoryPath)
+            if serviceList:
+                memdic['services'] = serviceList
+                memdic.pop('status')
+                memberDirectoryPath, providersDirectoryPath, etfDirectoryPath = self.createWeekDirectories()
+                self.addMemDict(memdic, weekName, memberDirectoryPath)
+        for provdic in provRegList:
+            serviceList = self.getProviderService(servicePath, provdic['Id'])
+            if serviceList:
+                provdic['services'] = serviceList
+                provdic['totalConsults'] = len(serviceList)
+                provdic['totalFee'] = self.getTotalFee(serviceList)
+                self.addProvDict(provdic, weekName, providersDirectoryPath)
+                print(providersDirectoryPath)
 
     def createWeekDirectories(self):
         memberDirectoryPath = ' '
         providersDirectoryPath = ' '
+        newDirectoryPath = ' '
         for fileName in os.listdir(serviceDirectory):
             if fileName.endswith('.json'):
                 directoryName = fileName[:-5]
@@ -137,7 +177,7 @@ class ManagerControl:
                         newDirectoryPath, "members")
                     providersDirectoryPath = os.path.join(
                         newDirectoryPath, "providers")
-        return memberDirectoryPath, providersDirectoryPath
+        return memberDirectoryPath, providersDirectoryPath, newDirectoryPath
 
     def addMemDict(self, memObject, weekName, memberDirectoryPath):
         if os.path.exists(memberDirectoryPath):
@@ -145,6 +185,13 @@ class ManagerControl:
             newMemberPathName = os.path.join(
                 memberDirectoryPath, memberFileName)
             db.createJSONFile(newMemberPathName, memObject)
+
+    def addProvDict(self, provObject, weekName, providersDirectoryPath):
+        if os.path.exists(providersDirectoryPath):
+            providerFileName = provObject['name'] + '_' + weekName
+            newProviderPathName = os.path.join(
+                providersDirectoryPath, providerFileName)
+            db.createJSONFile(newProviderPathName, provObject)
 
     def viewMemberReport(memberFile):
         return database.memberReport(memberId)
@@ -154,4 +201,4 @@ class ManagerControl:
 
 
 manager = ManagerControl()
-manager.getMemberDict()
+manager.createMemberReport()
