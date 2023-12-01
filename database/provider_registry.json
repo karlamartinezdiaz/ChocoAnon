@@ -1,1 +1,11 @@
-[{"name": "Member1", "Id": 111333111, "address": "113 1'th Way", "city": "Onesville", "state": "OR", "zipcode": 11111, "status": "Valid"}]
+[
+  {
+    "name": "Provider1",
+    "Id": 111111111,
+    "address": "113 1'th Way",
+    "city": "Onesville",
+    "state": "OR",
+    "zipcode": 11111,
+    "status": "Valid"
+  }
+]
