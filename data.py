@@ -82,9 +82,13 @@ class ServiceData:
         self.comments = comments
 
     def getDateOfService(self):
-        date = input("Please type in your date of service(MM-DD-YYYY): ")
-        dateOfService = datetime.strptime(date, "%m-%d-%Y")
-        return dateOfService.strftime('%d-%m-%Y')
+        while True:
+            date = input("Please type in your date of service(MM-DD-YYYY): ")
+            dateOfService = datetime.strptime(date, "%m-%d-%Y")
+            if dateOfService > datetime.now():
+                print("The date entered is in the future. Please enter a valid date")
+            else:
+                return dateOfService.strftime('%d-%m-%Y')
 
     def getDateAndTime(self):
         dateNTime = datetime.now()
@@ -96,7 +100,7 @@ class ServiceData:
             if not providerNumber.isdigit():
                 print("The provider Number should only contain numbers")
             elif len(providerNumber) != 9:
-                print("The provider number must have exaclty 9 numbers")
+                print("The provider number must have exactly 9 numbers")
             else:
                 return int(providerNumber)
 
