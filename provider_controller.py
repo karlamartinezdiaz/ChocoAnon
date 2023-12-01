@@ -1,4 +1,6 @@
-import datetime
+import os
+import json
+from datetime import datetime, timedelta
 from database import *
 
 
@@ -6,7 +8,6 @@ class ProviderControl:
     def __init__(self):
         # Initialize with file paths for the provider directory and service records
         self.providerDirectory = 'database\provider_directory.json'
-        # Ensure this path is correct
 
     def giveAuthorization(self, providerId):
         """
@@ -83,25 +84,29 @@ class ProviderControl:
         if self.giveAuthorization(providerId) and self.messageMemberId(memberId) == "Valid":
             serviceFee = self.getServiceFee(serviceCode)
             if serviceFee and self.verifyServiceFee(serviceFee, serviceCode):
-                current_datetime = datetime.datetime.now().strftime("%m-%d-%Y %H:%M:%S")
-                current_date, current_time = current_datetime.split(' ')
-                service_record = {
+                currentDatetime = datetime.now().strftime("%m-%d-%Y %H:%M:%S")
+                currentDate, currentTime = currentDatetime.split(' ')
+                serviceRecord = {
                     "current": {
-                        "date": current_date,
-                        "time": current_time
+                        "date": currentDate,
+                        "time": currentTime
                     },
                     "date": dateOfService,
-                    "provider_ID": providerId,
-                    "member_ID": memberId,
-                    "service_code": serviceCode,
+                    "providerId": providerId,
+                    "memberId": memberId,
+                    "serviceCode": serviceCode,
                     "comments": comments
                 }
-                # Return the service record object to the terminal/caller
-                return service_record
+
+                # # Debug print statements
+                # print("Service Record Created:", serviceRecord)
+
+                # Return the service record object as a dictionary
+                return serviceRecord
             else:
-                return None, "Service fee verification failed."
+                return {"error": "Service fee verification failed."}
         else:
-            return None, "Provider or Member ID is invalid."
+            return {"error": "Provider or Member ID is invalid."}
 
     def getServiceFee(self, serviceCode):
         """
@@ -113,3 +118,42 @@ class ProviderControl:
             if service['code'] == serviceCode:
                 return service['fee']
         return None
+
+    def appendServiceRecord(self, serviceRecord):
+        """
+        Appends a service record to the appropriate weekly service records database file,
+        named by the week number of the year.
+        """
+        try:
+            # Extract the date from the service record and parse it
+            dateOfService = datetime.strptime(
+                serviceRecord['date'], '%m-%d-%Y')
+
+            # Determine the week number for the service date
+            weekNumber = dateOfService.isocalendar()[1]
+
+            # Construct the file name based on the week number of the year
+            weeklyFileName = f'week_{weekNumber}.json'
+
+            # Define the base path for the service records directory
+            serviceRecordsBasePath = 'database/service_records'
+
+            # Construct the full file path
+            filePath = os.path.join(serviceRecordsBasePath, weeklyFileName)
+
+            # Load the existing records from the file if it exists, else create a new list
+            if os.path.exists(filePath):
+                with open(filePath, 'r') as file:
+                    serviceRecords = json.load(file)
+            else:
+                serviceRecords = []
+
+            # Append the new record
+            serviceRecords.append(serviceRecord)
+
+            # Save the updated list back to the file
+            with open(filePath, 'w') as file:
+                json.dump(serviceRecords, file)
+        except Exception as e:
+            print(f"An error occurred while appending the service record: {e}")
+            raise
