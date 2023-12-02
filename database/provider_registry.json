@@ -5,7 +5,8 @@
     "address": "113 1st Way",
     "city": "Portland",
     "state": "OR",
-    "zipcode": 97201
+    "zipcode": 97201,
+    "status": "Valid"
   },
   {
     "name": "James Smith",
@@ -13,7 +14,8 @@
     "address": "200 Main St",
     "city": "Los Angeles",
     "state": "CA",
-    "zipcode": 90001
+    "zipcode": 90001,
+    "status": "Valid"
   },
   {
     "name": "Buddy Johnson",
@@ -21,7 +23,8 @@
     "address": "342 Park Ave",
     "city": "New York",
     "state": "NY",
-    "zipcode": 10001
+    "zipcode": 10001,
+    "status": "Suspended"
   },
   {
     "name": "Chuple Williams",
@@ -29,7 +32,8 @@
     "address": "567 Oak St",
     "city": "Chicago",
     "state": "IL",
-    "zipcode": 60601
+    "zipcode": 60601,
+    "status": "Suspended"
   },
   {
     "name": "Feel Brown",
@@ -37,7 +41,8 @@
     "address": "890 Elm Dr",
     "city": "Houston",
     "state": "TX",
-    "zipcode": 77001
+    "zipcode": 77001,
+    "status": "Suspended"
   },
   {
     "name": "Thocc lancer",
@@ -45,7 +50,8 @@
     "address": "123 Pine Ln",
     "city": "Phoenix",
     "state": "AZ",
-    "zipcode": 85001
+    "zipcode": 85001,
+    "status": "Valid"
   },
   {
     "name": "Jessica Garcia",
@@ -53,7 +59,8 @@
     "address": "456 Maple St",
     "city": "Philadelphia",
     "state": "PA",
-    "zipcode": 19019
+    "zipcode": 19019,
+    "status": "Suspended"
   },
   {
     "name": "Chris Miller",
@@ -61,7 +68,8 @@
     "address": "789 Cedar Rd",
     "city": "San Antonio",
     "state": "TX",
-    "zipcode": 78201
+    "zipcode": 78201,
+    "status": "Suspended"
   },
   {
     "name": "Amanda Davis",
@@ -69,7 +77,8 @@
     "address": "321 Birch Blvd",
     "city": "San Diego",
     "state": "CA",
-    "zipcode": 92101
+    "zipcode": 92101,
+    "status": "Valid"
   },
   {
     "name": "Joshua Martinez",
@@ -77,7 +86,8 @@
     "address": "213 Walnut Ave",
     "city": "Dallas",
     "state": "TX",
-    "zipcode": 75201
+    "zipcode": 75201,
+    "status": "Suspended"
   },
   {
     "name": "Stephanie Wilson",
@@ -85,7 +95,8 @@
     "address": "654 Spruce St",
     "city": "Austin",
     "state": "TX",
-    "zipcode": 73301
+    "zipcode": 73301,
+    "status": "Valid"
   },
   {
     "name": "Kevin Anderson",
@@ -93,7 +104,8 @@
     "address": "478 Ash Ct",
     "city": "Jacksonville",
     "state": "FL",
-    "zipcode": 32099
+    "zipcode": 32099,
+    "status": "Suspended"
   },
   {
     "name": "Laura Thomas",
@@ -101,7 +113,8 @@
     "address": "982 Pinecrest Rd",
     "city": "San Francisco",
     "state": "CA",
-    "zipcode": 94101
+    "zipcode": 94101,
+    "status": "Valid"
   },
   {
     "name": "Brian Jackson",
@@ -109,7 +122,8 @@
     "address": "307 Oakwood Ln",
     "city": "Columbus",
     "state": "OH",
-    "zipcode": 43085
+    "zipcode": 43085,
+    "status": "Suspended"
   },
   {
     "name": "Rebecca White",
@@ -117,7 +131,8 @@
     "address": "513 Cherry St",
     "city": "Fort Worth",
     "state": "TX",
-    "zipcode": 76102
+    "zipcode": 76102,
+    "status": "Valid"
   },
   {
     "name": "Daniel Harris",
@@ -133,7 +148,8 @@
     "address": "739 Cedar Ln",
     "city": "Indianapolis",
     "state": "IN",
-    "zipcode": 46201
+    "zipcode": 46201,
+    "status": "Suspended"
   },
   {
     "name": "Jelly Lewis",
@@ -141,7 +157,8 @@
     "address": "840 Maple Rd",
     "city": "Seattle",
     "state": "WA",
-    "zipcode": 98101
+    "zipcode": 98101,
+    "status": "Valid"
   },
   {
     "name": "Ashley Robinson",
@@ -149,6 +166,7 @@
     "address": "175 Birchwood Dr",
     "city": "Denver",
     "state": "CO",
-    "zipcode": 80014
+    "zipcode": 80014,
+    "status": "Suspended"
   }
 ]

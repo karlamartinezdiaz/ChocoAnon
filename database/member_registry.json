@@ -6,7 +6,7 @@
     "city": "Portland",
     "state": "OR",
     "zipcode": 97201,
-    "status": "Active"
+    "status": "Valid"
   },
   {
     "name": "Emily Johnson",
@@ -24,7 +24,7 @@
     "city": "New York",
     "state": "NY",
     "zipcode": 10001,
-    "status": "Active"
+    "status": "Valid"
   },
   {
     "name": "Sarah Wilson",
@@ -42,7 +42,7 @@
     "city": "Miami",
     "state": "FL",
     "zipcode": 33101,
-    "status": "Active"
+    "status": "Valid"
   },
   {
     "name": "Jennifer Lee",
@@ -60,7 +60,7 @@
     "city": "Detroit",
     "state": "MI",
     "zipcode": 48201,
-    "status": "Active"
+    "status": "Valid"
   },
   {
     "name": "Olivia Martin",
@@ -78,7 +78,7 @@
     "city": "Columbus",
     "state": "OH",
     "zipcode": 43201,
-    "status": "Active"
+    "status": "Valid"
   },
   {
     "name": "Emma Garcia",
@@ -96,7 +96,7 @@
     "city": "Las Vegas",
     "state": "NV",
     "zipcode": 89101,
-    "status": "Active"
+    "status": "Valid"
   },
   {
     "name": "Sophia Brown",
@@ -114,7 +114,7 @@
     "city": "Boston",
     "state": "MA",
     "zipcode": 27890,
-    "status": "Active"
+    "status": "Valid"
   },
   {
     "name": "Mia Davis",
@@ -132,7 +132,7 @@
     "city": "Raleigh",
     "state": "NC",
     "zipcode": 27601,
-    "status": "Active"
+    "status": "Valid"
   },
   {
     "name": "Lucas Smith",
@@ -141,7 +141,7 @@
     "city": "Philadelphia",
     "state": "PA",
     "zipcode": 19101,
-    "status": "Active"
+    "status": "Valid"
   },
   {
     "name": "Ava Johnson",
@@ -159,7 +159,7 @@
     "city": "Baltimore",
     "state": "MD",
     "zipcode": 21201,
-    "status": "Active"
+    "status": "Valid"
   },
   {
     "name": "Ella Smith",
@@ -177,7 +177,7 @@
     "city": "Milwaukee",
     "state": "WI",
     "zipcode": 53201,
-    "status": "Active"
+    "status": "Valid"
   },
   {
     "name": "Ethan Martin",
