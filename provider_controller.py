@@ -8,6 +8,8 @@ class ProviderControl:
     def __init__(self):
         # Initialize with file paths for the provider directory and service records
         self.providerDirectory = 'database\provider_directory.json'
+        self.memberRegistry = 'database\member_registry.json'
+        # self.serviceRecords = 'database\service_records\week_2.json'
 
     def giveAuthorization(self, providerId):
         """
@@ -157,3 +159,30 @@ class ProviderControl:
         except Exception as e:
             print(f"An error occurred while appending the service record: {e}")
             raise
+
+    def verifyService(self, dateOfService, memName, memId, serviceCode, feePaid):
+        """
+        This function will verify the data passed in from the provider terminal and will verify
+        that the data being re-entered matches with what's in the database.
+        """
+        memberInfo = getJSONListOfDicts(self.memberRegistry)
+        provInfo = getJSONListOfDicts(self.providerDirectory)
+        # serviceDate = getJSONListOfDicts(self.serviceRecords)
+
+        for member in memberInfo:
+            if member['name'] == memName and member['Id'] == memId:
+                for provider in provInfo:
+                    if provider['code'] == serviceCode and provider['fee'] == feePaid:
+                        """
+                        for root, files in os.walk('database\service_records\week_2.json'):
+                            for filename in files:
+                                if filename.endswith('.json'):
+                                    file_path = os.path.join(
+                                        root, 'database\service_records\week_2.json')
+                                    with open(file_path, 'r') as json_file:
+                                        data = json.load(json_file)
+                                        if data['date'] == dateOfService:
+                        """
+                        return True
+        else:
+            return False

@@ -148,6 +148,19 @@ class TestProviderControl(unittest.TestCase):
         self.assertEqual(serviceRecord["date"], dateOfService)
         self.assertEqual(serviceRecord["comments"], comments)
 
+    def test_verifyService(self):
+        # Testing by drawing data from a service record
+        dateOfService = "01-15-2023"
+        memName = "Member1"
+        memId = 111333111
+        serviceCode = 123456
+        feePaid = 150
+
+        result = self.providerControl.verifyService(
+            dateOfService, memName, memId, serviceCode, feePaid)
+
+        self.assertTrue(result)
+
 
 if __name__ == '__main__':
     unittest.main()
