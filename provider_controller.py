@@ -177,15 +177,3 @@ class ProviderControl:
                             if data['dateOfService'] == dateOfService:
                                 return True
         return False
-
-
-test_obj = ProviderControl()
-
-result = test_obj.verifyService(
-    "1-7-2023", "John Smith", 111333111, 454545, 60)
-
-if result == True:
-    print("You're good!")
-
-else:
-    print("It failed again :(")
