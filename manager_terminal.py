@@ -2,9 +2,7 @@
 import manager_controller as mc
 import data
 
-'''Displays the user options'''
-
-
+#Displays the user options
 def main_menu():
     print("1. End of Week")
     print("2. Generate ETF Report")
@@ -19,65 +17,63 @@ def main_menu():
     print("11. Turn Off Terminal")
 
 
-'''Calls the following three functions.'''
-
-
+#Calls the following three functions.
 def endOfWeek():
     etfReport()
     memberReport()
     providerReport()
 
 
-'''Placeholder for manager.py function'''
-
-
+#Placeholder for manager.py function
 def etfReport():
     pass
 
 
-'''Takes in a member id. Calls manager.py function'''
-
-
+#Takes in a member id. Calls manager.py function
 def memberReport():
     print(mc.ManagerControl().viewMemberReport(data.BasicData().getId()))
     # Something should be returned here. At the very least a T/F.
 
 
-'''Takes in a provider id. Calls manager.py function'''
-
-
+#Takes in a provider id. Calls manager.py function
 def providerReport():
     print(mc.ManagerControl().viewProviderReport(data.BasicData().getId()))
     # Something should be returned here. At the very least a T/F.
 
 
+#Takes in a member's data, such as name, address, city, etc. Then passes to manager.py.
 def addMember():
     print(mc.ManagerControl().addMember(data.BasicData().createBasicData()))
     # Something should be returned here. At the very least a T/F.
 
 
+#Takes in a member's data, such as name, address, city, etc. Then passes to manager.py.
 def updateMember():
     member = data.BasicData().createBasicData()
     print(mc.ManagerControl().editMember(member.Id, member))
     # Something should be returned here. At the very least a T/F.
 
 
+#Takes in a member's id for deletion.
 def removeMember():
     print(mc.ManagerControl().removeMember(data.BasicData().getId()))
     # Something should be returned here. At the very least a T/F.
 
 
+#Takes in a provider's data, such as name, address, city, etc. Then passes to manager.py.
 def addProvider():
     print(mc.ManagerControl().addProvider(data.BasicData().createBasicData()))
     # Something should be returned here. At the very least a T/F.
 
 
+#Takes in a provider's data, such as name, address, city, etc. Then passes to manager.py.
 def updateProvider():
     provider = data.BasicData().createBasicData()
     print(mc.ManagerControl().editProvider(provider.Id, provider))
     # Something should be returned here. At the very least a T/F.
 
 
+#Takes in a provider's id for deletion.
 def removeProvider():
     print(mc.ManagerControl().removeProvider(data.BasicData().getId()))
     # Something should be returned here. At the very least a T/F.
@@ -109,7 +105,7 @@ if __name__ == '__main__':
             elif choice == 9:
                 updateProvider()
             elif choice == 10:
-                removeMember()
+                removeProvider()
             elif choice == 11:
                 pass
             else:
