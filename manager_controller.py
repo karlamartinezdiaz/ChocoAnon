@@ -17,6 +17,7 @@ class ManagerControl:
                         city=dataObj.city, state=dataObj.state, zipcode=dataObj.zipcode)
         return dataDict
 
+    
     # Adds a new provider to the database
     def addProvider(self, providerObj):
         providerDict = self.makeDict(providerObj)
