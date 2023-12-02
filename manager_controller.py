@@ -172,6 +172,7 @@ class ManagerControl:
                 provdic['services'] = serviceList
                 provdic['totalConsults'] = len(serviceList)
                 provdic['totalFee'] = self.getTotalFee(serviceList)
+                provdic.pop('status')
                 self.addProvDict(provdic, weekName, providersDirectoryPath)
                 etfDic = {
                     'providerName': provdic['name'], 'providerId': provdic['Id'], 'amountToTransfer': provdic['totalFee']}
@@ -219,3 +220,4 @@ class ManagerControl:
             newProviderPathName = os.path.join(
                 providersDirectoryPath, providerFileName)
             db.createJSONFile(newProviderPathName, provObject)
+
