@@ -1,5 +1,4 @@
 
-import __init__
 import manager_controller as mc
 import data
 
