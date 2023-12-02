@@ -9,7 +9,7 @@ class ProviderControl:
         # Initialize with file paths for the provider directory and service records
         self.providerDirectory = 'database\provider_directory.json'
         self.memberRegistry = 'database\member_registry.json'
-        # self.serviceRecords = 'database\service_records\week_2.json'
+        self.serviceRecords = 'database\service_records'
 
     def giveAuthorization(self, providerId):
         """
@@ -52,7 +52,6 @@ class ProviderControl:
         for service in providerDirectory:
             if int(service['code']) == serviceCode and int(service['fee']) == serviceFee:
                 return True
-        # print("Service Fee Not Found for Code:", serviceCode)  # Debug print I think this function is not working properly
         return False
 
     def verifyServiceCode(self, serviceCode):
@@ -68,7 +67,7 @@ class ProviderControl:
             # Check if any service in the directory matches the provided service code
             return any(service['code'] == serviceCode for service in providerDirectory)
         except ValueError:
-            # If SeerviceCode is not an integer, return False
+            # If ServiceCode is not an integer, return False
             return False
         except Exception as e:
             # Handle other exceptions such as file not found or JSON errors
@@ -89,15 +88,12 @@ class ProviderControl:
                         "date": currentDate,
                         "time": currentTime
                     },
-                    "date": dateOfService,
+                    "dateOfService": dateOfService,
                     "providerId": providerId,
                     "memberId": memberId,
                     "serviceCode": serviceCode,
                     "comments": comments
                 }
-
-                # # Debug print statements
-                # print("Service Record Created:", serviceRecord)
 
                 # Return the service record object as a dictionary
                 return serviceRecord
@@ -125,7 +121,7 @@ class ProviderControl:
         try:
             # Extract the date from the service record and parse it
             dateOfService = datetime.strptime(
-                serviceRecord['date'], '%m-%d-%Y')
+                serviceRecord['dateOfService'], '%m-%d-%Y')
 
             # Determine the week number for the service date
             weekNumber = dateOfService.isocalendar()[1]
@@ -164,21 +160,32 @@ class ProviderControl:
         memberInfo = getJSONListOfDicts(self.memberRegistry)
         provInfo = getJSONListOfDicts(self.providerDirectory)
         # serviceDate = getJSONListOfDicts(self.serviceRecords)
+        weekNumber = datetime.strptime(
+            dateOfService, '%m-%d-%Y').isocalendar()[1]
+        weeklyFileName = f'week_{weekNumber}.json'
+        serviceRecordsPath = os.path.join(
+            'database', 'service_records', weeklyFileName)
 
         for member in memberInfo:
             if member['name'] == memName and member['Id'] == memId:
                 for provider in provInfo:
                     if provider['code'] == serviceCode and provider['fee'] == feePaid:
-                        """
-                        for root, files in os.walk('database\service_records\week_2.json'):
-                            for filename in files:
-                                if filename.endswith('.json'):
-                                    file_path = os.path.join(
-                                        root, 'database\service_records\week_2.json')
-                                    with open(file_path, 'r') as json_file:
-                                        data = json.load(json_file)
-                                        if data['date'] == dateOfService:
-                        """
-                        return True
-        else:
-            return False
+                        print(serviceRecordsPath)
+                        serviceDate = getJSONListOfDicts(serviceRecordsPath)
+                        for data in serviceDate:
+                            print(data['dateOfService'])
+                            if data['dateOfService'] == dateOfService:
+                                return True
+        return False
+
+
+test_obj = ProviderControl()
+
+result = test_obj.verifyService(
+    "1-7-2023", "John Smith", 111333111, 454545, 60)
+
+if result == True:
+    print("You're good!")
+
+else:
+    print("It failed again :(")

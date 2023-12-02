@@ -12,7 +12,7 @@ class TestProviderControl(unittest.TestCase):
     # Authentication tests-----------------------------------------------
     def test_giveAuthorization_valid(self):
         # Test giveAuthorization with a valid provider ID
-        providerId = "111333112"
+        providerId = 111111111
         result = self.providerControl.giveAuthorization(providerId)
         dbResult = checkProviderID(providerId)
         self.assertTrue(result)
@@ -58,7 +58,7 @@ class TestProviderControl(unittest.TestCase):
 
     def test_messageMemberId_suspended(self):
         # Test messageMemberId with a suspended Member ID (customize this based on data)
-        suspendedMemberId = "396352333"  # Suspended member ID from the database
+        suspendedMemberId = 444555444  # Suspended member ID from the database
         result = self.providerControl.messageMemberId(suspendedMemberId)
         self.assertEqual(result, "Suspended")
 
@@ -126,8 +126,8 @@ class TestProviderControl(unittest.TestCase):
 
     def test_createServiceRecord_valid(self):
         # Test creating a service record with valid inputs
-        providerId = "111333112"
-        memberId = "111333111"
+        providerId = 111111111
+        memberId = 111333111
         serviceCode = 123456  # Valid service code from the database
         dateOfService = "01-15-2023"
         comments = "Test service record"
@@ -145,16 +145,16 @@ class TestProviderControl(unittest.TestCase):
         self.assertEqual(serviceRecord["providerId"], providerId)
         self.assertEqual(serviceRecord["memberId"], memberId)
         self.assertEqual(serviceRecord["serviceCode"], serviceCode)
-        self.assertEqual(serviceRecord["date"], dateOfService)
+        self.assertEqual(serviceRecord["dateOfService"], dateOfService)
         self.assertEqual(serviceRecord["comments"], comments)
 
     def test_verifyService(self):
         # Testing by drawing data from a service record
-        dateOfService = "01-15-2023"
-        memName = "Member1"
+        dateOfService = "1-7-2023"
+        memName = "John Smith"
         memId = 111333111
-        serviceCode = 123456
-        feePaid = 150
+        serviceCode = 454545
+        feePaid = 60
 
         result = self.providerControl.verifyService(
             dateOfService, memName, memId, serviceCode, feePaid)
