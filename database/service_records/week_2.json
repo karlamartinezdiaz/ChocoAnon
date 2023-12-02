@@ -1,1 +1,26 @@
-[{"current": {"date": "11-30-2023", "time": "21:53:49"}, "date": "01-15-2023", "providerId": "111333112", "memberId": "111333111", "serviceCode": 123456, "comments": "Test service record"}]
+[
+  {
+    "current": { "date": "01-8-2023", "time": "05:53:49" },
+    "dateOfService": "01-7-2023",
+    "providerId": 111111111,
+    "memberId": 111333111,
+    "serviceCode": 454545,
+    "comments": "Test service record"
+  },
+  {
+    "current": { "date": "01-13-2023", "time": "02:30:15" },
+    "dateOfService": "01-12-2023",
+    "providerId": 257398102,
+    "memberId": 222444222,
+    "serviceCode": 112233,
+    "comments": "Another service record"
+  },
+  {
+    "current": { "date": "01-09-2023", "time": "08:45:30" },
+    "dateOfService": "01-8-2023",
+    "providerId": 398127543,
+    "memberId": 396352333,
+    "serviceCode": 212121,
+    "comments": "Service entry for week 2"
+  }
+]
