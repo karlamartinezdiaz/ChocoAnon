@@ -1,12 +1,23 @@
 [
-  {
-    "code": 123456,
-    "name": "Physical Therapy",
-    "fee": 150
-  },
-  {
-    "code": 555198,
-    "name": "Appointment with Dietician",
-    "fee": 45
-  }
+  { "code": 454545, "name": "Acupuncture Therapy", "fee": 60 },
+  { "code": 332211, "name": "Allergy Testing", "fee": 95 },
+  { "code": 555198, "name": "Appointment with Dietician", "fee": 45 },
+  { "code": 445566, "name": "Cardiology Checkup", "fee": 130 },
+  { "code": 101010, "name": "Chiropractic Adjustment", "fee": 65 },
+  { "code": 345678, "name": "Dental Cleaning", "fee": 100 },
+  { "code": 233445, "name": "Dermatology Consultation", "fee": 110 },
+  { "code": 901234, "name": "Eye Examination", "fee": 80 },
+  { "code": 789012, "name": "General Consultation", "fee": 90 },
+  { "code": 556677, "name": "Gynecological Exam", "fee": 115 },
+  { "code": 323232, "name": "Massage Therapy", "fee": 75 },
+  { "code": 665544, "name": "Neurology Consultation", "fee": 140 },
+  { "code": 123321, "name": "Nutritional Counseling", "fee": 85 },
+  { "code": 212121, "name": "Occupational Therapy", "fee": 130 },
+  { "code": 112233, "name": "Orthopedic Consultation", "fee": 120 },
+  { "code": 778899, "name": "Pediatric Visit", "fee": 70 },
+  { "code": 123456, "name": "Physical Therapy", "fee": 150 },
+  { "code": 131313, "name": "Podiatry Appointment", "fee": 90 },
+  { "code": 987654, "name": "Psychiatric Evaluation", "fee": 150 },
+  { "code": 141414, "name": "Radiology Imaging", "fee": 200 },
+  { "code": 202020, "name": "Speech Therapy", "fee": 110 }
 ]

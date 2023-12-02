@@ -17,8 +17,6 @@ class ProviderControl:
         Checks if the provider ID is exactly 9 digits.
         Returns True if valid, False otherwise.
         """
-        if len(providerId) != 9 or not providerId.isdigit():
-            return False
         return checkProviderID(providerId)
 
     def messageMemberId(self, memberId):
@@ -26,8 +24,6 @@ class ProviderControl:
         Checks the status of member ID and returns a status message.
         Possible return statuses are "Valid", "Invalid", and "Suspended".
         """
-        if len(memberId) != 9 or not memberId.isdigit():
-            return "Invalid"  # Member ID must be a 9-digit number
         return checkMemberID(memberId)
 
     def logout(self):

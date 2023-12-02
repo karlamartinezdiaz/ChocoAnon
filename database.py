@@ -55,7 +55,6 @@ def getJSONDict(pathname):
     try:
         with open(pathname, "r") as file:
             dictionary = json.load(file)
-            print(type(dictionary))
             file.close()
         if (type(dictionary) != dict):
             raise ValueError
@@ -74,7 +73,6 @@ def getJSONListOfDicts(pathname):
     try:
         with open(pathname, "r") as file:
             listOfDicts = json.load(file)
-            print(type(listOfDicts))
             file.close()
         if (type(listOfDicts) != list):
             raise ValueError
